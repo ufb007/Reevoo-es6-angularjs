@@ -1,0 +1,62 @@
+html, body, head {
+    overflow-x: hidden;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+span, p, h1, h2, h3, h4, input, button, th, tr {
+	font-family: 'Open Sans', sans-serif !important;
+}
+
+.basket {
+	padding-top: 8px;
+}
+
+.basket i {
+	
+}
+
+input, .btn, button {
+	border-radius: 0 !important;
+}
+
+.container-fluid {
+	padding-right: 0;
+}
+
+.navbar-brand {
+	padding-bottom: 0;
+}
+
+table tr td {
+	vertical-align: middle;
+}
+
+table tr td.img {
+	width: 150px;
+}
+
+table tr td img {
+	width: 100px;
+	margin-right: 10px;
+}
+
+table tr td div.qty i {
+	cursor: pointer;
+}
+
+table tr td div.qty span {
+	padding: 0 5px;
+}
+
+table tr.subtotal td {
+	padding-top: 30px;
+}
+
+table tr.savings td {
+	border-top: 0;
+}
+
+i.fa-minus-circle.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}

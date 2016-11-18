@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app="angularEs6" ng-strict-di>
+<head>
+	<title>Angular ES6</title>
+	<link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/libs/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/libs/css/main.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300' rel='stylesheet' type='text/css'>
+</head>
+<body ng-controller="MainController as ctrl">
+
+	<!--Hello {{ ctrl.person.name | upper }}!-->
+
+	<div class="modal fade" id="basketModal" ng-model="basketModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4><i class="fa fa-shopping-cart"></i> Your items</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Product</th>
+								<th>Price</th>
+								<th>Qty</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="product in basketItems | unique:'code'">
+								<td ng-bind="product.name"></td>
+								<td>&pound; <span ng-bind="product.price"></span></td>
+								<td ng-bind="product.qty"></td>
+							</tr>
+							<tr ng-if="savings.length > 0" class="subtotal">
+								<td colspan="2"><strong>Subtotal</strong></td>
+								<td>&pound;<span ng-bind="subtotal"></span></td>
+							</tr>
+							<tr ng-if="savings.length > 0">
+								<td colspan="3"><strong>Savings</strong></td>
+							</tr>
+							<tr class="savings" ng-repeat="saving in savings">
+								<td></td>
+								<td ng-bind="saving.name"></td>
+								<td>-&pound;<span ng-bind="saving.saving"></span></td>
+							</tr>
+							<tr class="totalPrice">
+								<td colspan="2"><strong>Total</strong></td>
+								<td>&pound;<span ng-bind="totalPrice"></span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button data-dismiss="modal" ng-click="payAction();" type="button" class="btn btn-success" ng-class="(totalPrice == 0) ? 'disabled' : ''"><i class="fa fa-credit-card"></i> Pay</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">Reevoo Market</a>
+			</div>
+
+			<div class="basket pull-right">
+				<button class="btn btn-success" data-target="#basketModal" data-toggle="modal" ng-click="openBasket();"><i class="fa fa-shopping-cart"></i> Basket <span><span ng-bind="basketItems.length">0</span> items</i> &pound;<span ng-bind="subtotal"></button>
+			</div>
+		</div>
+	</nav>
+
+	<div class="col-md-8 col-md-offset-2">
+		<div class="alert alert-success" ng-if="alertSuccess">
+		  <strong>Success!</strong><br />Payment has been made.
+		</div>
+
+		<div class="row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Name</th>
+						<th>Product Code</th>
+						<th>Price</th>
+						<th>Qty</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="(key, product) in products">
+						<td class="img"><img src="{{product.image}}" alt="" /></td>
+						<td><span ng-bind="product.name"></span></td>
+						<td><span ng-bind="product.code"></span></td>
+						<td>&pound;<span ng-bind="product.price"></span></td>
+						<td>
+							<div class="qty">
+								<i class="fa fa-minus-circle" ng-class="product.qty == 0 ? 'disabled' : ''"  ng-click="addQuantity('minus', key)"></i> <span ng-bind="product.qty"></span> <i class="fa fa-plus-circle" ng-click="addQuantity('plus', key)"></i>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="row">
+			<button class="btn btn-primary pull-right" data-target="#basketModal" data-toggle="modal" ng-click="openBasket()"><i class="fa fa-shopping-cart"></i> Checkout</button>
+		</div>
+	</div>
+
+	<script src="libs/angular.min.js"></script>
+	<script src="scripts/app.min.js"></script>
+	<script src="/libs/jquery/dist/jquery.min.js"></script>
+	<script src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
