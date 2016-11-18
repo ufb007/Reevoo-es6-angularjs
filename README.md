@@ -1,7 +1,11 @@
-To use this sample project you need gulp installed (`npm install -g gulp`).
+This project is using AngularJS with ES6
 
-The default task will execute `gulp serve` which build the sources, watch for changes
-and serve them on port [8080](http://localhost:8080).
+To start project you need gulp installed (`npm install -g gulp`).
 
-You will find several comments in the sources and build files and I wrote a
-how to use AngularJS with ECMAScript 6.
+Install node modules by typing `npm install`
+
+Transpile the ES6 scripts with `gulp build`
+
+Run server with `gulp serve`
+
+Go to browser and go to http://localhost:8080 to view the project
