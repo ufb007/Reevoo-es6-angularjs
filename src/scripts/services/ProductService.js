@@ -14,16 +14,4 @@ export default class PersonService {
 	getProducts() {
 		return this._$q.when(new Product());
 	}
-
-	/*getProductCode() {
-
-	}
-
-	getProductName() {
-
-	}
-
-	getPrice() {
-
-	}*/
 }
